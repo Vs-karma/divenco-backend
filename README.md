@@ -215,7 +215,7 @@
 ---
 ### SELL  : : Routes  
 
-#### Sell A Product / Metal  
+#### Sell A Product  
 ```http
   POST /sell/sell  
 ```
@@ -240,51 +240,3 @@
 | :-------- | :------- | :-------------------------------- |
 | `adminToken`   | `string` | **Required**. Header Parameter|
 
----
-### SCRAP  : : Routes  
-
-#### Scrap A Product / Metal  
-```http
-  POST /sell/scrap  
-```
-
-| Parameter | Type     | Description                       |
-| :-------- | :------- | :-------------------------------- |
-| `email`   | `string` | **Required**.|
-| `fullName`   | `string` | **Required**.|
-| `phone`   | `string` | **Required**.|
-| `type`   | `string` | **Required**. (automobile , metal) |
-| `vechileNumber`   | `string` | **Required**. if type is automobile  |
-| `VechileName`   | `string` | **Required**. if type is automobile  |
-| `weight`   | `` | **Required**. if type is metal  |
-| `metalType`   | `string` | **Required**. if type is metal  |
-
-
-#### GET ALL SCRAP Products  
-```http
-  GET /sell/getscrap  
-```
-
-| Parameter | Type     | Description                       |
-| :-------- | :------- | :-------------------------------- |
-| `adminToken`   | `string` | **Required**. Header Parameter|
-
-
----
-### Product  : : Routes  
-
-#### Add a Product   
-```http
-  POST /sell/scrap  
-```
-
-| Parameter | Type     | Description                       |
-| :-------- | :------- | :-------------------------------- |
-| `email`   | `string` | **Required**.|
-| `fullName`   | `string` | **Required**.|
-| `phone`   | `string` | **Required**.|
-| `type`   | `string` | **Required**. (automobile , metal) |
-| `vechileNumber`   | `string` | **Required**. if type is automobile  |
-| `VechileName`   | `string` | **Required**. if type is automobile  |
-| `weight`   | `` | **Required**. if type is metal  |
-| `metalType`   | `string` | **Required**. if type is metal  |
