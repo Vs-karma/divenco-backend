@@ -83,7 +83,7 @@ async(req,res)=>{
             // await Categories.updateOne({$pushAll: {blogs:['google','fb']}},{upsert:true});
              return res.send('ey')
          }
-        if(req.body.category === "automobile"){
+        if(req.body.category === "localBrand"){
             let product = new Product({
                 name:req.body.name , 
                 category:req.body.category,
@@ -102,7 +102,7 @@ async(req,res)=>{
             let newProduct = await product.save(); 
             return res.status(200).json({success:true,data:newProduct}); 
         }
-        if(req.body.category === "metal"){
+        if(req.body.category === "globalBrand"){
             let product = new Product({
                 name:req.body.name , 
                 category:req.body.category,

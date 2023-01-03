@@ -29,8 +29,8 @@ async(req,res)=>{
                 fullName:req.body.fullName,
                 phone:req.body.phone, 
                 details : {
-                    vechileName:req.body.vechileName,
-                    vechileNumber:req.body.vechileNumber
+                    localBrand:req.body.localBrand,
+                    globalBrand:req.body.globalBrand
                 }
             })
             let newSell = await sell.save(); 
