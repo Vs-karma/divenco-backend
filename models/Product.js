@@ -20,7 +20,11 @@ const ProductSchema = new mongoose.Schema({
     }, 
     details:{
         type:Object,
-        required:true  
+        required:false  
+    },
+    size:{
+        type:Array,
+        default:[]
     },
     isDeleted:{
         type:Boolean,

@@ -11,6 +11,7 @@ const WishList = require('./WishList/index');
 const Sell = require('./Sell/index');
 const Orders = require('./Orders/index')
 const Feedback = require('./Feedback/index'); 
+const carouselImg = require('./HomeCarImg/index')
 
 
 //authentication routes 
@@ -39,6 +40,9 @@ router.use('/orders', Orders);
 
 // feedback route 
 router.use('/feedback',Feedback); 
+
+// Home Craousel Image
+router.use('/homecraouselimg',carouselImg);
 
 // base root 
 router.get('/', (req, res) => {

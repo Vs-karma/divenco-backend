@@ -34,6 +34,7 @@ router.post('/add',
                 // update if exists 
                 if (!user.wishlist.includes(req.body.productid)) {
                     await user.updateOne({ $push: { wishlist: product._id } });
+                    await user.updateOne({ $push: { size: product.size} });
                     await user.updateOne({ $push: { interests: product.details.brand } }) // this is for personalisation of products  
                     return res.status(200).json({ success: true, data: "Product Added to WishList" })
                 }
@@ -72,6 +73,7 @@ router.delete('/delete',
                 // update if exists 
                 if (user.wishlist.includes(req.body.productid)) {
                     await user.updateOne({ $pull: { wishlist: product._id } });
+                    await user.updateOne({ $push: { size: product.size} });
                     await user.updateOne({ $pull: { interests: product.category } }) // this is for personalisation of the data 
                     return res.status(200).json({ success: true, data: "Product Removed from Wishlist" })
                 }

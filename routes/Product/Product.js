@@ -57,42 +57,42 @@ async(req,res)=>{
         let allCategories = await Categories.findOne(); 
 
         // first time create model if there is no data 
-        if(!allCategories){
-            console.log('categories not found')
-            let a = new Categories({
-                products : req.body.subCategory
-            })
-            await a.save(); 
-        }
-        // if we have the data then add new categories 
-        else{
-            let {subCategory} = req.body;
-            console.log(subCategory); 
-            let newCategories = []; 
+        // if(!allCategories){
+        //     console.log('categories not found')
+        //     let a = new Categories({
+        //         products : req.body.subCategory
+        //     })
+        //     await a.save(); 
+        // }
+        // // if we have the data then add new categories 
+        // else{
+        //     let {subCategory} = req.body;
+        //     console.log(subCategory); 
+        //     let newCategories = []; 
 
-            if(subCategory.length){
-                subCategory.forEach(element => {
-                    if(!allCategories.products.includes(element)){
-                        newCategories.push(element); 
-                    }
-                });
-            }
-            console.log(newCategories); 
+        //     if(subCategory.length){
+        //         // subCategory.forEach(element => {
+        //         //     if(!allCategories.products.includes(element)){
+        //         //         newCategories.push(element); 
+        //         //     }
+        //         // });
+        //     }
+        //     console.log(newCategories); 
             
-            await Categories.updateOne( { $addToSet: { products : { $each: newCategories } } });
-            // await Categories.updateOne({$pushAll: {blogs:['google','fb']}},{upsert:true});
-             return res.send('ey')
-         }
-        if(req.body.category === "localBrand"){
+        //     await Categories.updateOne( { $addToSet: { products : { $each: newCategories } } });
+        //     // await Categories.updateOne({$pushAll: {blogs:['google','fb']}},{upsert:true});
+        //      return res.send('ey')
+        //  }
+        if(req.body.category === "men"){
             let product = new Product({
                 name:req.body.name , 
+                size:req.body.size,
                 category:req.body.category,
                 description:req.body.description,
                 subCategory:req.body.subCategory, 
                 details:{
                     brand:req.body.brand,
-                    modelname:req.body.modelname,
-                    fuelType:req.body.fuelType 
+                    modelname:req.body.modelname
                 },
                 price:req.body.price,
                 img:req.files.map(element => {
@@ -102,16 +102,16 @@ async(req,res)=>{
             let newProduct = await product.save(); 
             return res.status(200).json({success:true,data:newProduct}); 
         }
-        if(req.body.category === "globalBrand"){
+        if(req.body.category === "women"){
             let product = new Product({
                 name:req.body.name , 
+                size:req.body.size,
                 category:req.body.category,
                 description:req.body.description,
                 subCategory:req.body.subCategory, 
                 details:{
                     brand:req.body.brand || '',
-                    modelname:req.body.modelname || '',
-                    metalType:req.body.metalType || '' ,     
+                    modelname:req.body.modelname || '',   
                 },
                 price:req.body.price,
                 img:req.files.map(element => {
@@ -203,15 +203,15 @@ async(req,res)=>{
         if(!req.body.category){
             return res.status(400).json({success:false,msg:"Category Required"}); 
         }
-        if(req.body.category === "automobile"){
+        if(req.body.category === "men"){
             product.name=req.body.name || product.name 
             product.category=req.body.category || product.category
+            product.size=req.body.size || product.size
             product.description=req.body.description ? req.body.description : product.description
             product.subCategory=req.body.subCategory || product.subCategory 
             product.details={
                 brand:req.body.brand ? req.body.brand : product.details.brand,
-                modelname:req.body.modelname ? req.body.modelname : product.details.modelname,
-                fuelType:req.body.fuelType ? req.body.fuelType : product.details.fuelType
+                modelname:req.body.modelname ? req.body.modelname : product.details.modelname
             },
             product.price=req.body.price || product.price
 
@@ -223,15 +223,15 @@ async(req,res)=>{
             let newProduct = await product.save(); 
             return res.status(200).json({success:true,product:newProduct}); 
         }
-        if(req.body.category === "metal"){
+        if(req.body.category === "women"){
             product.name=req.body.name || product.name
             product.category=req.body.category || product.category
+            product.size=req.body.size || product.size
             product.description=req.body.description || product.description
             product.subCategory=req.body.subCategory || product.subCategory 
             product.details={
                 brand:req.body.brand ? req.body.brand : product.details.brand,
-                modelname:req.body.modelname ? req.body.modelname : product.details.modelname,
-                metalType:req.body.metalType ? req.body.metalType : product.details.metalType,     
+                modelname:req.body.modelname ? req.body.modelname : product.details.modelname  
             }
             product.price=req.body.price || product.price
 
